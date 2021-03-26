@@ -6,7 +6,7 @@ metadata:
   name: config-demo
 spec:
   containers:
-    - image: config-demo:latest
+    - image: gcr.io/mytest1-305713/config-demo-img
       name: config-demo
       ports:
         - containerPort: 8080
@@ -19,7 +19,21 @@ spec:
             configMapKeyRef:
               name: spring-config
               key: dev-config.json
-  restartPolicy: Never  
-                  
+  restartPolicy: Never 
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-service-name
+  labels:
+    app: callme-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8080
+    name: http
+  selector:
+    app: config-demo
           
                 
