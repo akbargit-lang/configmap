@@ -1,0 +1,8 @@
+apiVersion: skaffold/v2alpha1
+kind: Config
+build:
+  artifacts:
+    - image: gcr.io/mytest1-305713/congif-exam-service
+      jib: {}
+  tagPolicy:
+    gitCommit: {}
